@@ -9,7 +9,9 @@ grading = {'A': 4.0, 'A-': 3.67, 'B+': 3.33, 'B': 3.0, 'B-': 2.70, 'C+': 2.30, '
 with open('students.csv') as csvfile:
 	reader = csv.DictReader(csvfile)
 for row in reader:
-	print(row[Grades])
+	x = float(row[2])
+	y = float(row[3])
+	z = float(row[4])
 	 
 
 courses = 0
