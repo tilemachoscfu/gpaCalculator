@@ -1,20 +1,42 @@
-import csv
+class Course:
+  def __init__(self, grade, credits, name = "N/A"):
+    self.grade   = score[grade]
+    self.letter  = grade
+    self.credits = credits
+    self.name    = name
 
-print("Welcome to the GPA calculator.")
+score = {
+  'A' : 4.000,
+  'A-': 3.667,
+  'B+': 3.333,
+  'B' : 3.000,
+  'B-': 2.667,
+  'C+': 2.333,
+  'C' : 2.000,
+  'C-': 1.667,
+  'D+': 1.333,
+  'D' : 1.000,
+  'D-': 0.667,
+  'F' : 0.000
+}
 
-grading = {'A': 4.0, 'A-': 3.67, 'B+': 3.33, 'B': 3.0, 'B-': 2.70, 'C+': 2.30, 'C': 2.0, 'C-': 1.70, 'D+': 1.30, 'D': 1.0, 'D-': 0.7, 'F': 0.0}
+spring2018 = [
+  Course('A', 4, "Operating Systems"),
+  Course('B', 4, "Algorithms"),
+  Course('A-', 4, "GIS"),
+  Course('A-', 4, "Finite Mathematics")
+]
 
-courses = 0
-total = 0 
+def gpa(semester):
+  total_score = 0
+  total_credits = 0
 
-with open('students.csv') as csvfile:
-	reader = csv.DictReader(csvfile)
-	user = input('Whats your name?: ')
-	for row in reader:
-		x = row[user]
-		print(x)
-		if x in grading:
-			courses += 1
-			total += grading[x] 
-if courses > 0:
-	print('Your GPA is %0.2f' % (total / courses))
+  for course in semester:
+    score = course.grade * course.credits
+    total_score += score
+    total_credits += course.credits
+
+  gpa = total_score / total_credits
+  return gpa
+
+print (gpa(spring2018))
